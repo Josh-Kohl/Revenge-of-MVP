@@ -2,5 +2,5 @@
 node_modules/
 
 bundle.js
-credentials.js
+data/credentials.js
 
