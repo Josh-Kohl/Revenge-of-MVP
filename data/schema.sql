@@ -10,6 +10,11 @@ CREATE TABLE templates (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE recipes (
+  id int NOT NULL AUTO_INCREMENT,
+  product varchar(50) NOT NULL,
+  PRIMARY KEY (id)
+);
 
 /*  Execute this file from the command line by typing:
  *    mysql -u <USER> < schema.sql
