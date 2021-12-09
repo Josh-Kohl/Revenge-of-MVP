@@ -7,12 +7,15 @@ USE ferment;
 CREATE TABLE templates (
   id int NOT NULL AUTO_INCREMENT,
   product varchar(50) NOT NULL,
+  name varchar(50) NOT NULL,
+  tea_ratio int NOT NULL,
+  target_acidity int NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE recipes (
   id int NOT NULL AUTO_INCREMENT,
-  product varchar(50) NOT NULL,
+  name varchar(50) NOT NULL,
   PRIMARY KEY (id)
 );
 

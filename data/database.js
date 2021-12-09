@@ -1,7 +1,7 @@
 const mysql = require('mysql2')
 const mysqlConfig = require('./credentials.js')
 
-const connection = mysql.createConnection(mysqlConfig);
+const connection = mysql.createConnection(mysqlConfig.db);
 
 connection.connect()
 
