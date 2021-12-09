@@ -24,24 +24,20 @@ app.get('/hi', (req, res) => {
 
 waApi.getFull('.12 = x/(x+2000)')
   .then((response) => {
-    var solutionFullText = 'placeholder';
+    var solution = 'placeholder';
 
     for (var i = 0; i < response.pods.length; i++) {
-
-      // console.log(response.pods[i].title, response.pods[i].subpods)
-
       if (response.pods[i].title === 'Solution'){
-        console.log(response.pods[i].subpods)
-
-        solutionFullText = response.pods[i].subpods[0].plaintext
+        let solutionFullText = response.pods[i].subpods[0].plaintext
+        solution = parseInt(solutionFullText.slice(2))
       }
     }
 
-    console.log(typeof(parseInt(solutionFullText.slice(2))));
+    console.log(solution);
   })
   .catch((error) => {
     // handle error
-    console.log(error);
+    console.log('Error from WolframAlpha API call.', error);
   })
 
 
