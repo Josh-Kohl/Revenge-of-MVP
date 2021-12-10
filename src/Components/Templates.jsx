@@ -7,9 +7,24 @@ class Template extends React.Component {
     super(props);
     this.state = {
       recipeName: 'my brew',
-
+      type: undefined,
+      totalVolume: undefined,
+      backslop: undefined,
+      water: undefined,
+      sugar: undefined,
+      teaWeight:undefined
     };
+    this.handleClick = this.handleClick.bind(this);
   }
+
+
+
+
+  handleClick(e) {
+    console.log('Event information from click: ',e);
+
+  }
+
 
   render() {
     const { name } = this.props;
@@ -25,23 +40,23 @@ class Template extends React.Component {
 
         <h1>How much do you want total?</h1>
         <div className="box-row">
-        <SelectionBox title={'500ml'} value={1}/>
-        <SelectionBox title={'1L'} value={2}/>
-        <SelectionBox title={'4L'} value={3}/>
+        <SelectionBox title={'500ml'} value={500} click={this.handleClick}/>
+        <SelectionBox title={'1L'} value={1000}/>
+        <SelectionBox title={'4L'} value={4000}/>
         </div>
 
         <h1>How strong do you want the base flavor to be?</h1>
         <div className="box-row">
-        <SelectionBox title={'low'} value={1}/>
-        <SelectionBox title={'med'} value={2}/>
-        <SelectionBox title={'high'} value={3}/>
+        <SelectionBox title={'low'} value={.013}/>
+        <SelectionBox title={'med'} value={.05}/>
+        <SelectionBox title={'high'} value={.1}/>
         </div>
 
         <h1>How sour do you want the final brew?</h1>
         <div className="box-row">
-        <SelectionBox title={'low'} value={1}/>
-        <SelectionBox title={'med'} value={2}/>
-        <SelectionBox title={'high'} value={3}/>
+        <SelectionBox title={'low'} value={.1}/>
+        <SelectionBox title={'med'} value={.12}/>
+        <SelectionBox title={'high'} value={.2}/>
         </div>
 
         <h1>Name Your Recipe</h1>
