@@ -5,6 +5,7 @@ html {background-color: black}
 #app {
   color: rgb(37, 187, 247);
   background-color: black;
+  font-family: sans-serif;
 }
 
 hr {

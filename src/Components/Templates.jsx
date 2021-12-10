@@ -1,33 +1,72 @@
 import React from "react";
 import SelectionBox from "./SelectionBox.jsx";
 import SelectionRow from "./SelectionRow.jsx"
+import $ from 'jquery';
 
 class Template extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipeName: 'my brew',
+      recipeName: '',
       type: undefined,
       totalVolume: undefined,
+      degreesBrix: undefined,
+      teaStrength: undefined,
+
       backslop: undefined,
       water: undefined,
       sugar: undefined,
-      teaStrength: undefined,
       teaWeight:undefined,
-      degreesBrix: undefined
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.calculateRecipe = this.calculateRecipe.bind(this);
+    this.calculateSugar = this.calculateSugar.bind(this);
+  }
+
+  calculateSugar() {
+    let query = `${this.state.degreesBrix} = x/(x+${this.state.totalVolume})`;
+
+    $.get('/wolfram', {query: query}, (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+
+      console.log(data);
+      this.setState({
+        sugar: data,
+      });
+    });
+
+  }
+
+  calculateRecipe() {
+    let backslop = this.state.totalVolume * .1;
+    let water = this.state.totalVolume * .9;
+    let teaWeight = this.state.totalVolume * this.state.teaStrength;
+
+    this.calculateSugar();
+
+    this.setState({
+      backslop: backslop,
+      water: water,
+      teaWeight: teaWeight
+    })
+
   }
 
   handleClick(e) {
-    //console.log('Event information from click: ');
     this.setState({
       [e.field]: e.value
     })
   }
 
+  handleChange(event) {
+    this.setState({recipeName: event.target.value});
+  }
+
   render() {
-    const { name } = this.props;
+
     return (
       <div className="template-parent">
 
@@ -41,8 +80,8 @@ class Template extends React.Component {
         <h1>How much do you want total?</h1>
         <div className="box-row">
         <SelectionBox title={'500ml'} value={{field: 'totalVolume', value: 500}} click={this.handleClick}/>
-        <SelectionBox title={'1L'} value={{field: 'totalVolume', value: 1000}} click={this.handleClick}/>
-        <SelectionBox title={'4L'} value={{field: 'totalVolume', value: 4000}} click={this.handleClick}/>
+        <SelectionBox title={'1000ml'} value={{field: 'totalVolume', value: 1000}} click={this.handleClick}/>
+        <SelectionBox title={'4000ml'} value={{field: 'totalVolume', value: 4000}} click={this.handleClick}/>
         </div>
 
         <h1>How strong do you want the base flavor to be?</h1>
@@ -61,7 +100,11 @@ class Template extends React.Component {
 
         <h1>Name Your Recipe</h1>
         <div className="box-row">
-        <input value={this.state.recipeName} ></input>
+        <input type='text' value={this.state.recipeName} onChange={this.handleChange}></input>
+        </div>
+
+        <div>
+          <button onClick={this.calculateRecipe}>Calculate</button>
         </div>
 
       </div>
