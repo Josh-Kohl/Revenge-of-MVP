@@ -1,11 +1,54 @@
 import React from "react";
+import SelectionBox from "./SelectionBox.jsx";
+import SelectionRow from "./SelectionRow.jsx"
 
 class Template extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      recipeName: 'my brew',
+
+    };
+  }
+
   render() {
     const { name } = this.props;
     return (
-      <div>
-        <h1>I'm a Template</h1>
+      <div className="template-parent">
+
+        <h1>What type of Kombucha do you want to make?</h1>
+        <div className="box-row">
+        <SelectionBox title={'Juice'}/>
+        <SelectionBox title={'Floral'}/>
+        <SelectionBox title={'Classic'}/>
+        </div>
+
+        <h1>How much do you want total?</h1>
+        <div className="box-row">
+        <SelectionBox title={'500ml'} value={1}/>
+        <SelectionBox title={'1L'} value={2}/>
+        <SelectionBox title={'4L'} value={3}/>
+        </div>
+
+        <h1>How strong do you want the base flavor to be?</h1>
+        <div className="box-row">
+        <SelectionBox title={'low'} value={1}/>
+        <SelectionBox title={'med'} value={2}/>
+        <SelectionBox title={'high'} value={3}/>
+        </div>
+
+        <h1>How sour do you want the final brew?</h1>
+        <div className="box-row">
+        <SelectionBox title={'low'} value={1}/>
+        <SelectionBox title={'med'} value={2}/>
+        <SelectionBox title={'high'} value={3}/>
+        </div>
+
+        <h1>Name Your Recipe</h1>
+        <div className="box-row">
+        <input value={this.state.recipeName} ></input>
+        </div>
+
       </div>
     );
   }
