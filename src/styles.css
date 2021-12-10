@@ -35,7 +35,13 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
-  /* margin: auto; */
 }
 
+#selected {
+  background-color: rgb(37, 187, 247);
+  color: black
+}
+
+#unselected {
+  background-color: black;
+}

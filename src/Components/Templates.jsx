@@ -33,7 +33,7 @@ class Template extends React.Component {
 
         <h1>What type of Kombucha do you want to make?</h1>
         <div className="box-row">
-        <SelectionBox title={'Juice'} value={{field: 'type', value: 'juice'}} click={this.handleClick}/>
+        <SelectionBox title={'Juicy'} value={{field: 'type', value: 'juice'}} click={this.handleClick}/>
         <SelectionBox title={'Floral'} value={{field: 'type', value: 'floral'}} click={this.handleClick}/>
         <SelectionBox title={'Classic'} value={{field: 'type', value: 'classic'}} click={this.handleClick}/>
         </div>
