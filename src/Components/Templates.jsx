@@ -12,19 +12,19 @@ class Template extends React.Component {
       backslop: undefined,
       water: undefined,
       sugar: undefined,
-      teaWeight:undefined
+      teaStrength: undefined,
+      teaWeight:undefined,
+      degreesBrix: undefined
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
-
-
-
   handleClick(e) {
-    console.log('Event information from click: ',e);
-
+    //console.log('Event information from click: ');
+    this.setState({
+      [e.field]: e.value
+    })
   }
-
 
   render() {
     const { name } = this.props;
@@ -33,30 +33,30 @@ class Template extends React.Component {
 
         <h1>What type of Kombucha do you want to make?</h1>
         <div className="box-row">
-        <SelectionBox title={'Juice'}/>
-        <SelectionBox title={'Floral'}/>
-        <SelectionBox title={'Classic'}/>
+        <SelectionBox title={'Juice'} value={{field: 'type', value: 'juice'}} click={this.handleClick}/>
+        <SelectionBox title={'Floral'} value={{field: 'type', value: 'floral'}} click={this.handleClick}/>
+        <SelectionBox title={'Classic'} value={{field: 'type', value: 'classic'}} click={this.handleClick}/>
         </div>
 
         <h1>How much do you want total?</h1>
         <div className="box-row">
-        <SelectionBox title={'500ml'} value={500} click={this.handleClick}/>
-        <SelectionBox title={'1L'} value={1000}/>
-        <SelectionBox title={'4L'} value={4000}/>
+        <SelectionBox title={'500ml'} value={{field: 'totalVolume', value: 500}} click={this.handleClick}/>
+        <SelectionBox title={'1L'} value={{field: 'totalVolume', value: 1000}} click={this.handleClick}/>
+        <SelectionBox title={'4L'} value={{field: 'totalVolume', value: 4000}} click={this.handleClick}/>
         </div>
 
         <h1>How strong do you want the base flavor to be?</h1>
         <div className="box-row">
-        <SelectionBox title={'low'} value={.013}/>
-        <SelectionBox title={'med'} value={.05}/>
-        <SelectionBox title={'high'} value={.1}/>
+        <SelectionBox title={'low'} value={{field: 'teaStrength', value: .013}} click={this.handleClick}/>
+        <SelectionBox title={'med'} value={{field: 'teaStrength', value: .05}} click={this.handleClick}/>
+        <SelectionBox title={'high'} value={{field: 'teaStrength', value: .1}} click={this.handleClick}/>
         </div>
 
         <h1>How sour do you want the final brew?</h1>
         <div className="box-row">
-        <SelectionBox title={'low'} value={.1}/>
-        <SelectionBox title={'med'} value={.12}/>
-        <SelectionBox title={'high'} value={.2}/>
+        <SelectionBox title={'low'} value={.1} value={{field: 'degreesBrix', value: .1}} click={this.handleClick}/>
+        <SelectionBox title={'med'} value={{field: 'degreesBrix', value: .12}} click={this.handleClick}/>
+        <SelectionBox title={'high'} value={{field: 'degreesBrix', value: .2}} click={this.handleClick}/>
         </div>
 
         <h1>Name Your Recipe</h1>
@@ -86,12 +86,3 @@ export default Template;
   //mellow = .12
   //pucker up = .18
 //Name your recipe
-
-
-// State {
-//   totalVolume: 1000,
-//   water: this.state.total - backslop,
-//   sugar: .,
-//   backslop: this.state.total / 10,
-//   teaWeight:
-// }
