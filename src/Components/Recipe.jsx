@@ -10,7 +10,7 @@ class Recipe extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <div >
+      <div className="recipe-table">
         <table>
           <tr>
             <th>Field</th>
@@ -43,6 +43,7 @@ class Recipe extends React.Component {
             <td>Blend bases at will with combined weight of listed volume.</td>
           </tr>
         </table>
+
       </div>
     );
   }

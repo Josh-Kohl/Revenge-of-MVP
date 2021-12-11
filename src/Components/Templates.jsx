@@ -100,7 +100,8 @@ class Template extends React.Component {
         <div>
           <button onClick={this.calculateRecipe}>Calculate</button>
         </div>
-
+        <br></br>
+        <br></br>
         <Recipe recipe={this.state}/>
 
       </div>
