@@ -52,14 +52,4 @@ class App extends React.Component {
 export default App;
 
 
-//Show hide templates on sidebar? up top?
-//Choose a template recipe
-  //Choose a target volume
-  //Preset ingredients with option to change
-    //On submit => POST to recipes db
 
-//Choose previous recipe
-  //List of brews with date and score?
-  //Also list progress updates
-  //Option to Post update
-  //Save as template?

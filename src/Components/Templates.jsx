@@ -18,11 +18,21 @@ class Template extends React.Component {
       water: undefined,
       sugar: undefined,
       teaWeight:undefined,
+
+      selectionKey: 0,
+      selections: {
+        0: ['What type of Kombucha do you want to make?', ['Juicy', 'juicy'], ['Floral', 'floral'], ['Classic', 'classic']], //type
+        1: ['How much do you want to make?', ['500ml', 500], ['1000ml', 1000], ['4000ml', 4000]], //volume
+        2: ['How strong do you want the base flavor to be?', ['Mild', .013], ['Balanced', .05], ['Strong', .1]], //strength
+        3: ['How sour do you want the final brew?',['Refined', .1], ['Mellow', .12],  ['Pucker', .2]]  //brix
+      }
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.calculateRecipe = this.calculateRecipe.bind(this);
     this.calculateSugar = this.calculateSugar.bind(this);
+    this.renderSelections = this.renderSelections.bind(this);
+    this.changeSelection = this.changeSelection.bind(this);
   }
 
   calculateSugar() {
@@ -49,6 +59,10 @@ class Template extends React.Component {
     })
   }
 
+  componentDidMount() {
+    this.renderSelections()
+  }
+
   handleClick(e) {
     this.setState({
       [e.field]: e.value
@@ -59,49 +73,45 @@ class Template extends React.Component {
     this.setState({recipeName: event.target.value});
   }
 
+  changeSelection() {
+    let currentKey = this.state.selectionKey;
+
+    if(currentKey < 3) {
+      let newKey = currentKey + 1;
+      console.log('changed selection')
+      this.setState({
+        selectionKey: newKey
+      })
+
+      this.renderSelections()
+    }
+
+  }
+
+  renderSelections() {
+    let selectionKey = this.state.selectionKey;
+    let values = this.state.selections[selectionKey];
+
+    return (
+      <SelectionRow click={this.handleClick} values={values}/>
+    );
+  }
+
   render() {
 
     return (
       <div className="template-parent">
+        ${this.renderSelections()}
 
-        <h2>What type of Kombucha do you want to make?</h2>
-        <div className="box-row">
-        <SelectionBox title={'Juicy'} value={{field: 'type', value: 'juice'}} click={this.handleClick}/>
-        <SelectionBox title={'Floral'} value={{field: 'type', value: 'floral'}} click={this.handleClick}/>
-        <SelectionBox title={'Classic'} value={{field: 'type', value: 'classic'}} click={this.handleClick}/>
-        </div>
-
-        <h2>How much do you want total?</h2>
-        <div className="box-row">
-        <SelectionBox title={'500ml'} value={{field: 'totalVolume', value: 500}} click={this.handleClick}/>
-        <SelectionBox title={'1000ml'} value={{field: 'totalVolume', value: 1000}} click={this.handleClick}/>
-        <SelectionBox title={'4000ml'} value={{field: 'totalVolume', value: 4000}} click={this.handleClick}/>
-        </div>
-
-        <h2>How strong do you want the base flavor to be?</h2>
-        <div className="box-row">
-        <SelectionBox title={'low'} value={{field: 'teaStrength', value: .013}} click={this.handleClick}/>
-        <SelectionBox title={'med'} value={{field: 'teaStrength', value: .05}} click={this.handleClick}/>
-        <SelectionBox title={'high'} value={{field: 'teaStrength', value: .1}} click={this.handleClick}/>
-        </div>
-
-        <h2>How sour do you want the final brew?</h2>
-        <div className="box-row">
-        <SelectionBox title={'low'} value={.1} value={{field: 'degreesBrix', value: .1}} click={this.handleClick}/>
-        <SelectionBox title={'med'} value={{field: 'degreesBrix', value: .12}} click={this.handleClick}/>
-        <SelectionBox title={'high'} value={{field: 'degreesBrix', value: .2}} click={this.handleClick}/>
-        </div>
-
-        <div className="box-row">
-        </div>
-          <p id='recipe-title'>Name Your Recipe</p>
-          <input id='input' type='text' value={this.state.recipeName} onChange={this.handleChange} ></input>
+        <h1 onClick={this.changeSelection}>Continue</h1>
 
         <div>
           <button onClick={this.calculateRecipe}>Calculate</button>
         </div>
+
         <br></br>
         <br></br>
+
         <Recipe recipe={this.state}/>
 
       </div>
@@ -111,18 +121,3 @@ class Template extends React.Component {
 
 export default Template;
 
-//What type do you want to make?
-  //Juice || Floral || Classic
-// How Much?
-  //xml in 100ml increments
-  //click +/- to increment
-//How Strong do you want the base flavor to be? (skip if juice)
-  //determines tea ratio
-  //mild = 0.02
-  //Balanced = .05
-  //Strong = .1
-//How sweet / acidic do you want it to be? *BX = sugar / (sugar + h20 + backslop)
-  //refined = .10 degree bx
-  //mellow = .12
-  //pucker up = .18
-//Name your recipe
