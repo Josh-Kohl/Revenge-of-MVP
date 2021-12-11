@@ -68,9 +68,19 @@ h1 {
   background-color: black;
 }
 
-
+/* SETTINGS FOR RECIPE TABLE */
 .recipe-table {
+  font-size: 150%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
+  flex-direction: column;
 }
+
+ol {
+  list-style: outside
+}
+/*
+li {
+  align-items: left;
+} */

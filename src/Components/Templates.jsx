@@ -45,6 +45,7 @@ class Template extends React.Component {
       this.setState({
         sugar: data,
       });
+
     });
   }
 
@@ -106,7 +107,7 @@ class Template extends React.Component {
           <h1>Name Your Recipe</h1>
           <form>
             <label>
-              <input type="text" name="name" />
+              <input type="text" name="name" onChange={this.handleChange}/>
             </label>
           </form>
         </div>
