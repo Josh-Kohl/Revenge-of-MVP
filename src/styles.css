@@ -1,6 +1,9 @@
 
 /* SETTINGS FOR THE WHOLE DOM */
-html {background-color: black}
+html {
+  background-color: black
+
+}
 
 #app {
   color: rgb(37, 187, 247);

@@ -15,12 +15,6 @@ class SelectionBox extends React.Component {
     setTimeout(() => {this.setState({selected: !this.state.selected})}, 1000)
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     selected: this.props.display
-  //   })
-  // }
-
   render() {
     let btn_id = this.state.selected ? "selected" : "unselected";
     return (

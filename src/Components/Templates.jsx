@@ -21,11 +21,13 @@ class Template extends React.Component {
 
       selectionKey: 0,
       selections: {
-        0: ['What type of Kombucha do you want to make?', ['Juicy', 'juicy'], ['Floral', 'floral'], ['Classic', 'classic']], //type
-        1: ['How much do you want to make?', ['500ml', 500], ['1000ml', 1000], ['4000ml', 4000]], //volume
-        2: ['How strong do you want the base flavor to be?', ['Mild', .013], ['Balanced', .05], ['Strong', .1]], //strength
-        3: ['How sour do you want the final brew?',['Refined', .1], ['Mellow', .12],  ['Pucker', .2]]  //brix
-      }
+        0: ['What type of Kombucha do you want to make?', ['type', 'Juicy', 'juicy'], ['type', 'Floral', 'floral'], ['type', 'Classic', 'classic']], //type
+        1: ['How much do you want to make?', ['totalVolume', '500ml', 500], ['totalVolume', '1000ml', 1000], ['totalVolume', '4000ml', 4000]], //volume
+        2: ['How strong do you want the base flavor to be?', ['teaStrength', 'Mild', .013], ['teaStrength', 'Balanced', .05], ['teaStrength', 'Strong', .1]], //strength
+        3: ['How sour do you want the final brew?',['degreesBrix', 'Refined', .1], ['degreesBrix', 'Mellow', .12],  ['degreesBrix', 'Pucker', .2]]  //brix
+      },
+
+      displayRecipe: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -33,6 +35,7 @@ class Template extends React.Component {
     this.calculateSugar = this.calculateSugar.bind(this);
     this.renderSelections = this.renderSelections.bind(this);
     this.changeSelection = this.changeSelection.bind(this);
+    this.renderRecipe = this.renderRecipe.bind(this);
   }
 
   calculateSugar() {
@@ -55,7 +58,8 @@ class Template extends React.Component {
     this.setState({
       backslop: backslop,
       water: water,
-      teaWeight: teaWeight
+      teaWeight: teaWeight,
+      displayRecipe: true
     })
   }
 
@@ -97,11 +101,20 @@ class Template extends React.Component {
     );
   }
 
+  //create lightswitch in state for displaying results
+  renderRecipe() {
+    if(this.state.displayRecipe) {
+      return (
+        <Recipe recipe={this.state}/>
+        );
+    }
+  }
+
   render() {
 
     return (
       <div className="template-parent">
-        ${this.renderSelections()}
+        {this.renderSelections()}
 
         <h1 onClick={this.changeSelection}>Continue</h1>
 
@@ -112,7 +125,8 @@ class Template extends React.Component {
         <br></br>
         <br></br>
 
-        <Recipe recipe={this.state}/>
+        {/* <Recipe recipe={this.state}/> */}
+        {this.renderRecipe()}
 
       </div>
     );
