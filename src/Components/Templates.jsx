@@ -80,7 +80,7 @@ class Template extends React.Component {
   changeSelection() {
     let currentKey = this.state.selectionKey;
 
-    if(currentKey < 3) {
+    if(currentKey < 4) {
       let newKey = currentKey + 1;
       console.log('changed selection')
       this.setState({
@@ -88,6 +88,8 @@ class Template extends React.Component {
       })
 
       this.renderSelections()
+    } else if (currentKey === 4) {
+      this.calculateRecipe()
     }
 
   }
@@ -95,6 +97,21 @@ class Template extends React.Component {
   renderSelections() {
     let selectionKey = this.state.selectionKey;
     let values = this.state.selections[selectionKey];
+
+    //if at end of selections render name input
+    if (selectionKey === 4) {
+      return (
+        //name recipe
+        <div>
+          <h1>Name Your Recipe</h1>
+          <form>
+            <label>
+              <input type="text" name="name" />
+            </label>
+          </form>
+        </div>
+      );
+    }
 
     return (
       <SelectionRow click={this.handleClick} values={values}/>
@@ -117,10 +134,6 @@ class Template extends React.Component {
         {this.renderSelections()}
 
         <h1 onClick={this.changeSelection}>Continue</h1>
-
-        <div>
-          <button onClick={this.calculateRecipe}>Calculate</button>
-        </div>
 
         <br></br>
         <br></br>
