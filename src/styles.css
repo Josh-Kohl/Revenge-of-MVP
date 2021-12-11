@@ -1,6 +1,9 @@
 
 /* SETTINGS FOR THE WHOLE DOM */
-html {background-color: black}
+html {
+  background-color: black
+
+}
 
 #app {
   color: rgb(37, 187, 247);
@@ -65,10 +68,6 @@ h1 {
   background-color: black;
 }
 
-#input {
-
-
-}
 
 .recipe-table {
   display: flex;
