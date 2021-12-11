@@ -12,6 +12,20 @@ hr {
   border: 1px solid rgb(37, 187, 247);
 }
 
+h1 {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+/* SETTINGS FOR HEADER  */
+.header-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+
+}
+
 /* SETTINGS FOR TEMPLATE PAGE  */
 .template-parent {
   text-align: center
@@ -20,6 +34,10 @@ hr {
 .box-row {
   display: flex;
   justify-content: center;
+}
+
+#recipe-title {
+  font-size: 300% ;
 }
 
 /* SETTINGS FOR INDIVIDUAL TEMPLATE SELECTION BOXES */
@@ -45,4 +63,9 @@ hr {
 
 #unselected {
   background-color: black;
+}
+
+#input {
+
+
 }

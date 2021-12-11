@@ -31,8 +31,8 @@ app.get('/wolfram', (req, res) => {
           solution = parseInt(solutionFullText.slice(2))
         }
       }
-
-      return res.status(201).json(solution);
+      console.log(solution)
+      res.status(200).json(solution);
     })
     .catch((error) => {
 
